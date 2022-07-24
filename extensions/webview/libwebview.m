@@ -464,7 +464,7 @@ void delayUntilViewStopsLoading(HSWebViewView *theView, dispatch_block_t block) 
     } else if ([authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust]) {
         SecTrustRef serverTrust = challenge.protectionSpace.serverTrust;
         SecTrustResultType status ;
-        SecTrustEvaluate(serverTrust, &status);
+        SecTrustEvaluateWithError(serverTrust, &status);
 
         if (status == kSecTrustResultRecoverableTrustFailure && self.sslCallback != LUA_NOREF) {
             LuaSkin *skin = [LuaSkin sharedWithState:NULL] ;
